@@ -1,0 +1,12 @@
+tmp/
+node_modules/
+art/
+docs/
+materials/
+output/
+tests/
+netlify/
+redesign.py
+server.mjs
+pnpm-lock.yaml
+README.md
