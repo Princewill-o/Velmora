@@ -22,7 +22,7 @@ The AI only extracts occasion, budget and explicitly given UK size. Results, pri
 
 The site is configured for Vercel in `vercel.json`: publish the static app from `public/` and deploy `api/stylist.mjs` as a serverless function. The optional AI helper reads `OPENAI_API_KEY` and `OPENAI_MODEL` from Vercel project environment variables; without them, it returns a clear unavailable response and the deterministic catalogue helper still works. Set keys only in Vercel settings, never in the browser bundle. `netlify.toml` and `netlify/functions/stylist.mjs` are retained as an alternate host configuration. Do not deploy `materials/` as site content.
 
-For local use, `node server.mjs` serves the app and API at `http://localhost:4187/#/`. The target GitHub repository is `https://github.com/Princewill-o/Velmora`. The Vercel public URL becomes available after an authenticated deployment.
+Live site: https://velmora-beige-one.vercel.app/ · Source repository: https://github.com/Princewill-o/Velmora. For local use, `node server.mjs` serves the app and API at `http://localhost:4187/#/`.
 
 ## Deliverables
 

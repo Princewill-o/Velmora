@@ -16,11 +16,11 @@ Use the local preview at `http://localhost:4187/#/`. Keep this explicit: the sto
 
 **8:30–9:30 | What to cut.** Cut blanket discounts, invented reviews or urgency, an unconstrained chatbot, paid-social scale before checkout diagnosis, and any delivery promise unsupported by the catalogue. A 20% discount reduces gross profit to 43.75% of discounted revenue before marketing and fulfilment. Respect the 20-piece weekly studio cap and backlog.
 
-**9:30–10:00 | Validation and next step.** Fifteen automated checks pass. REA captures covered desktop and mobile, story navigation, mobile menu, sale collection and studio without page errors. Browser capture did show a non-fatal Three.js GPU precision warning. To launch, attach the repository to Git, deploy using the included Netlify configuration, set optional server-side AI environment variables, connect the real commerce system, and validate actual product measurements, margins, shipping and capacity.
+**9:30–10:00 | Validation and next step.** Eighteen automated checks pass. REA captures covered desktop and mobile, story navigation, mobile menu, sale collection, product and studio without page errors. The production Vercel deployment serves the home page, catalogue and Blender models. Chromium may log a non-fatal Three.js GPU precision warning. Next, set optional AI environment variables, connect real commerce, and validate product measurements, margins, shipping and studio capacity.
 
 ## Likely questions
 
-- **Is it live?** No. The catalogue and local bag work; checkout and payment are not connected. No public host or repository remote is configured in this workspace.
+- **Is it live?** Yes: [velmora-beige-one.vercel.app](https://velmora-beige-one.vercel.app/) and [the GitHub repository](https://github.com/Princewill-o/Velmora). Catalogue and local bag work; checkout and payment are not connected.
 - **Does it promise fit or arrival?** No. Supplied sizes and calendar-day lead estimates are displayed; measurements, carrier cost and exact dispatch dates are unavailable.
 - **Does AI choose a dress or invent product facts?** No. It extracts preferences; the 48-row catalogue and deterministic filters supply product matches and prices.
 - **Why these graphics?** No verified product photos were supplied. Original concept imagery and Blender models make the idea tangible while being clearly labelled.
