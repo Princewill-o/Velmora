@@ -1,0 +1,10 @@
+import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+import path from 'node:path';
+import {parseIntent} from './ai.mjs';
+const root=path.resolve('public');
+const requests=new Map();
+export const server=http.createServer(async(req,res)=>{try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+if(pathname==='/api/stylist'){res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');if(req.method!=='POST'){res.writeHead(405);return res.end(JSON.stringify({error:'POST required'}));}if(req.headers.origin&&req.headers.origin!==`http://${req.headers.host}`&&req.headers.origin!==`https://${req.headers.host}`){res.writeHead(403);return res.end('{}');}const ip=req.socket.remoteAddress,now=Date.now();for(const [k,v] of requests)if(now-v.time>60000)requests.delete(k);const rate=requests.get(ip)||{time:now,count:0};rate.count++;requests.set(ip,rate);if(rate.count>10){res.writeHead(429);return res.end(JSON.stringify({error:'Please wait a minute before trying again.'}));}let body='';for await(const chunk of req){body+=chunk;if(body.length>4096){res.writeHead(413);return res.end('{}');}}let input;try{input=JSON.parse(body);}catch{res.writeHead(400);return res.end('{}');}const result=await parseIntent(input.message);res.writeHead(result.status);return res.end(JSON.stringify(result.body));}
+const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}const body=await readFile(file);res.setHeader('Content-Type',({'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png'})[path.extname(file)]||'application/octet-stream');res.setHeader('X-Content-Type-Options','nosniff');res.end(body);}catch{res.writeHead(404);res.end('Not found');}});
+server.listen(process.env.PORT||4187,'0.0.0.0',()=>console.log(`Velmora is available at http://localhost:${process.env.PORT||4187}`));

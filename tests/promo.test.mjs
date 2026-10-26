@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {campaign,onSale,salePrice,saving} from '../public/promo.js';
+const products=JSON.parse(await readFile(new URL('../public/products.json',import.meta.url)));
+test('sale is exactly 20 percent for eight real selected products',()=>{assert.equal(campaign.ids.length,8);for(const id of campaign.ids){const p=products.find(x=>x.id===id);assert.ok(p);assert.equal(onSale(p),true);assert.equal(salePrice(p),Math.round(p.price_gbp*.8*100)/100);assert.equal(saving(p),p.price_gbp-salePrice(p));}});
+test('other products retain their supplied price and source catalogue is unmodified',()=>{for(const p of products.filter(x=>!onSale(x))){assert.equal(salePrice(p),p.price_gbp);assert.equal(saving(p),0);}assert.equal(products.find(x=>x.id==='VLM-003').price_gbp,310);});

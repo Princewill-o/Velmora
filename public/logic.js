@@ -1,0 +1,3 @@
+import {salePrice} from './promo.js';
+export function estimate(product,region='UK',now=new Date()){const start=new Date(now);start.setHours(12,0,0,0);const making=product.made_to_order?product.lead_time_days:0;return [region==='EU'?5:3,region==='EU'?8:5].map(days=>{const d=new Date(start);d.setDate(d.getDate()+making+days);return d;});}
+export function matchProducts(products,{occasion,budget,size,date,region},now=new Date()){return products.filter(p=>p.occasions.includes(occasion)&&salePrice(p)<=Number(budget)&&p.sizes.includes(size)&&(p.made_to_order||p.in_stock)&&(!date||estimate(p,region,now)[1]<=new Date(date+'T23:59:59'))).sort((a,b)=>salePrice(a)-salePrice(b)).slice(0,3);}

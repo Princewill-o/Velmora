@@ -1,0 +1,1 @@
+{"name":"velmora-studio","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test"},"devDependencies":{"happy-dom":"^21.0.4","three":"0.186.1"}}
